@@ -1,0 +1,125 @@
+body {
+    background-image: url(assets/blue-stationery-table.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
+    color: blue;
+    font-size: 50px;
+    text-align: center;
+}
+
+h2 {
+    color: rgb(74, 224, 212);
+    font-size: 30px;
+    text-align: center;
+}
+
+p {
+    color: black;
+    font-size: 22px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 0 10px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border: blue solid 3px;
+}
+
+td, th {
+    border: 2px solid rgb(57, 155, 200);
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: rgb(74, 224, 212);
+}
+
+hr {
+    border: 2px solid black;
+    margin: 20px 0;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    text-align: center;
+    padding: 20px;
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    border: 2px solid rgb(57, 155, 200);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="message"] {
+    padding: 10px;
+    width: 250px;
+    border: 2px solid rgb(74, 224, 212);
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background: rgb(0, 89, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input[type="submit"]:hover {
+    background: rgb(17, 0, 255);
+}
+
+@media (max-width: 410px) {
+    body {
+        background-image: url(assets/blue-stationery-table.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    h1 {
+        font-size: 30px;
+        color: rgb(17, 0, 255);
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="massege"] {
+        width: 90%;
+    }
+}
