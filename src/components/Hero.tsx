@@ -4,12 +4,11 @@ const Hero = () => {
   return (
     <section className="hero">
 
-      {/* PAGE TITLE */}
-      <div className="page-title-box">
+      <div className="home-strip">
         <h1>Home</h1>
+        <div className="home-divider"></div>
       </div>
 
-      {/* HERO IMAGE */}
       <div className="hero-image-wrapper">
         <img
           src={heroImg}

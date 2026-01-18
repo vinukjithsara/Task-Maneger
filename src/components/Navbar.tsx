@@ -3,7 +3,9 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-transparent">
       <div className="container">
 
-        <a className="navbar-brand fs-4" href="#"><img className="logo"src="/src/assets/logo.jpg" alt="WORKTRACK Logo" /></a>
+        <div className="logo-pill">
+         <img src="/src/assets/logo.png" alt="logo" />
+        </div>
 
         <button
           className="navbar-toggler shadow-none border-0"
@@ -36,14 +38,22 @@ const Navbar = () => {
             </ul>
 
             <div className="d-flex align-items-center gap-3">
-              <a className="text-white text-decoration-none">Login</a>
-              <a
-                className="text-white text-decoration-none px-3 py-1 rounded-4"
-                style={{ backgroundColor: "#f94ca4" }}
-              >
-                Sign Up
-              </a>
-            </div>
+  <a
+    href="#login"
+    className="btn btn-outline-light px-3 py-1 rounded-3"
+    style={{ borderColor: "#00B6B0", color: "#00B6B0" }}
+  >
+    Login
+  </a>
+
+  <a
+    href="#signup"
+    className="btn btn-outline-light px-3 py-1 rounded-3"
+    style={{ borderColor: "#00B6B0", color: "#00B6B0" }}
+  >
+    Sign Up
+  </a>
+</div>
           </div>
         </div>
       </div>
