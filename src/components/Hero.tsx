@@ -31,6 +31,7 @@ const Hero = ({ isLoggedIn }: HeroProps) => {
           {!isLoggedIn && (
             <button className="hero-cta">
               Get Started
+              
             </button>
           )}
         </div>
@@ -39,6 +40,9 @@ const Hero = ({ isLoggedIn }: HeroProps) => {
         <div className="hero-right">
           <img
             src={heroImg}
+
+
+
             alt="Work illustration"
             className="hero-img"
           />
