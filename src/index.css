@@ -853,22 +853,46 @@ a.btn:hover {
 }
 
 /* CARD */
-.task-card {
-  position: relative;
-  padding: 22px;
-  border-radius: 18px;
+.task-card{
+  position:relative;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:24px;
+  padding:28px;
+  transition:all 0.28s ease;
+  box-shadow:0 10px 28px rgba(0,0,0,0.18);
+  overflow:hidden;
+}
 
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.04),
-    rgba(255,255,255,0.01)
-  );
-
+/* hover premium effect */
+.task-card:hover{
+  transform:translateY(-6px) scale(1.01);
+  border-color:rgba(59,130,246,0.55);
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.05),
-    0 14px 36px rgba(0,0,0,0.65);
+    0 0 0 2px rgba(59,130,246,0.18),
+    0 18px 40px rgba(37,99,235,0.20),
+    0 10px 30px rgba(0,0,0,0.28);
+}
 
-  transition: transform 0.2s ease;
+/* smooth glow layer */
+.task-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:24px;
+  background:linear-gradient(
+    135deg,
+    rgba(59,130,246,0.05),
+    transparent 40%,
+    rgba(59,130,246,0.03)
+  );
+  opacity:0;
+  transition:0.28s ease;
+  pointer-events:none;
+}
+
+.task-card:hover::before{
+  opacity:1;
 }
 
 .task-card:hover {
@@ -1096,4 +1120,142 @@ textarea.modal-input {
 .success {
   background: #10c8b5;
   color: white;
+}
+
+.modal-input[type="datetime-local"]{
+  width:100%;
+  padding:18px 20px;
+  border:none;
+  outline:none;
+  border-radius:18px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-size:18px;
+  font-weight:500;
+  transition:all 0.25s ease;
+  box-sizing:border-box;
+}
+
+/* focus effect */
+.modal-input[type="datetime-local"]:focus{
+  background:rgba(255,255,255,0.12);
+  box-shadow:
+    0 0 0 2px rgba(59,130,246,0.55),
+    0 10px 25px rgba(37,99,235,0.18);
+  transform:translateY(-1px);
+}
+
+/* calendar / clock icon */
+.modal-input[type="datetime-local"]::-webkit-calendar-picker-indicator{
+  filter: invert(1) brightness(1.6);
+  cursor:pointer;
+  opacity:0.9;
+}
+
+/* placeholder-ish text */
+.modal-input[type="datetime-local"]::-webkit-datetime-edit{
+  color:white;
+}
+
+/* date/time sections */
+.modal-input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper{
+  padding:0;
+}
+
+.modal-input{
+  width:100%;
+  padding:18px 20px;
+  border:none;
+  outline:none;
+  border-radius:18px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-size:18px;
+  font-weight:500;
+  box-sizing:border-box;
+  transition:all 0.25s ease;
+  resize:none;
+}
+
+/* blue glow when clicked */
+.modal-input:focus{
+  background:rgba(255,255,255,0.12);
+  box-shadow:
+    0 0 0 2px rgba(59,130,246,0.55),
+    0 10px 25px rgba(37,99,235,0.18);
+  transform:translateY(-1px);
+}
+
+/* all modal buttons */
+.modal-actions button{
+  border:none;
+  outline:none;
+  padding:16px 28px;
+  border-radius:18px;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.25s ease;
+}
+
+/* hover lift */
+.modal-actions button:hover{
+  transform:translateY(-2px);
+}
+
+/* click press */
+.modal-actions button:active{
+  transform:scale(0.97);
+}
+.modal-actions .primary{
+  background:linear-gradient(135deg,#3b82f6,#2563eb);
+  color:white;
+  box-shadow:0 10px 22px rgba(37,99,235,0.35);
+}
+
+.modal-actions .primary:hover{
+  box-shadow:0 14px 28px rgba(37,99,235,0.45);
+}
+.modal-actions button:not(.primary):not(.danger):not(.success){
+  background:rgba(255,255,255,0.14);
+  color:white;
+}
+.modal-actions .success{
+  background:linear-gradient(135deg,#14b8a6,#0d9488);
+  color:white;
+  box-shadow:0 10px 22px rgba(13,148,136,0.30);
+}
+.modal-card{
+  animation:popIn 0.28s ease;
+}
+
+@keyframes popIn{
+  from{
+    opacity:0;
+    transform:scale(0.92) translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+.task-tools{
+  display:flex;
+  gap:12px;
+  margin:15px 0 25px;
+}
+
+.task-tools select{
+  padding:12px 16px;
+  border:none;
+  border-radius:14px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-size:15px;
+  outline:none;
+}
+
+.task-tools select:focus{
+  box-shadow:0 0 0 2px rgba(59,130,246,.5);
 }

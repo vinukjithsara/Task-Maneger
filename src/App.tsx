@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Navbar from "./components/Navbar";
@@ -11,41 +11,68 @@ import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
 import TaskPage from "./pages/Task";
 
-type Task = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [tasks, setTasks] = useState<Task[]>([]);
 
-  /* Fake API (GET only) */
+  /* ================= CHECK LOGIN ON REFRESH ================= */
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
-      .then(res => res.json())
-      .then(data => setTasks(data));
+    const userId = localStorage.getItem("userId");
+
+    if (userId) {
+      setIsLoggedIn(true);
+    }
   }, []);
 
   return (
     <BrowserRouter>
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
 
       <Routes>
-        <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
-        <Route path="/about" element={<About isLoggedIn={isLoggedIn} />} />
-        <Route path="/contact" element={<Contact isLoggedIn={isLoggedIn} />} />
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/signup" element={<Signup />} />
+        {/* PUBLIC ROUTES */}
+        <Route
+          path="/"
+          element={<Home isLoggedIn={isLoggedIn} />}
+        />
 
+        <Route
+          path="/about"
+          element={<About isLoggedIn={isLoggedIn} />}
+        />
+
+        <Route
+          path="/contact"
+          element={<Contact isLoggedIn={isLoggedIn} />}
+        />
+
+        <Route
+          path="/login"
+          element={
+            isLoggedIn ? (
+              <Navigate to="/dashboard" />
+            ) : (
+              <Login
+                setIsLoggedIn={setIsLoggedIn}
+              />
+            )
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={<Signup />}
+        />
+
+        {/* PROTECTED ROUTES */}
         <Route
           path="/dashboard"
           element={
             isLoggedIn ? (
-              <Dashboard tasks={tasks} />
+              <Dashboard />
             ) : (
-              <Login setIsLoggedIn={setIsLoggedIn} />
+              <Navigate to="/login" />
             )
           }
         />
@@ -54,11 +81,17 @@ function App() {
           path="/task"
           element={
             isLoggedIn ? (
-              <TaskPage tasks={tasks} setTasks={setTasks} />
+              <TaskPage />
             ) : (
-              <Login setIsLoggedIn={setIsLoggedIn} />
+              <Navigate to="/login" />
             )
           }
+        />
+
+        {/* UNKNOWN ROUTE */}
+        <Route
+          path="*"
+          element={<Navigate to="/" />}
         />
       </Routes>
 

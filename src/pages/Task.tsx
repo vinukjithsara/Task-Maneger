@@ -17,6 +17,9 @@ const TaskPage = () => {
   const [showDelete, setShowDelete] = useState(false);
   const [showComplete, setShowComplete] = useState(false);
 
+  const [filter, setFilter] = useState("All");
+  const [sortBy, setSortBy] = useState("Newest");
+
   /* ADD FORM */
   const [newTitle, setNewTitle] = useState("");
   const [newDesc, setNewDesc] = useState("");
@@ -81,7 +84,9 @@ const TaskPage = () => {
     setFormDesc(task.description || "");
     setFormDeadline(
       task.due_datetime
-        ? task.due_datetime.replace(" ", "T").slice(0, 16)
+        ? task.due_datetime
+            .slice(0, 16)
+            .replace(" ", "T")
         : ""
     );
 
@@ -92,17 +97,22 @@ const TaskPage = () => {
   const saveEdit = () => {
     if (!selectedTask) return;
 
-    fetch(`http://localhost:5000/api/tasks/${selectedTask.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: formTitle,
-        description: formDesc,
-        due_datetime: formDeadline || null,
-      }),
-    })
+    fetch(
+      `http://localhost:5000/api/tasks/${selectedTask.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify({
+          title: formTitle,
+          description: formDesc,
+          due_datetime:
+            formDeadline || null,
+        }),
+      }
+    )
       .then(() => {
         loadTasks();
         setShowEdit(false);
@@ -141,9 +151,12 @@ const TaskPage = () => {
   const deleteTask = () => {
     if (!selectedTask) return;
 
-    fetch(`http://localhost:5000/api/tasks/${selectedTask.id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `http://localhost:5000/api/tasks/${selectedTask.id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then(() => {
         loadTasks();
         setShowDelete(false);
@@ -152,11 +165,90 @@ const TaskPage = () => {
   };
 
   /* ================= FORMAT DATE ================= */
-  const formatDeadline = (date?: string) => {
+  const formatDeadline = (
+    date?: string
+  ) => {
     if (!date) return "No deadline";
 
-    return new Date(date).toLocaleString();
+    return new Date(date).toLocaleString(
+      "en-US",
+      {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }
+    );
   };
+
+  /* ================= FILTER ================= */
+  const filteredTasks = tasks.filter(
+    (task) => {
+      const now = new Date();
+
+      if (filter === "Pending")
+        return task.status === "Pending";
+
+      if (filter === "Completed")
+        return (
+          task.status === "Completed"
+        );
+
+      if (filter === "Overdue")
+        return (
+          task.status === "Pending" &&
+          task.due_datetime &&
+          new Date(task.due_datetime) <
+            now
+        );
+
+      return true;
+    }
+  );
+
+  /* ================= SORT ================= */
+  const finalTasks = [
+    ...filteredTasks,
+  ].sort((a, b) => {
+    if (sortBy === "Newest")
+      return b.id - a.id;
+
+    if (sortBy === "Oldest")
+      return a.id - b.id;
+
+    if (
+      sortBy ===
+      "Deadline Soonest"
+    ) {
+      return (
+        new Date(
+          a.due_datetime ||
+            "9999-12-31"
+        ).getTime() -
+        new Date(
+          b.due_datetime ||
+            "9999-12-31"
+        ).getTime()
+      );
+    }
+
+    if (
+      sortBy ===
+      "Deadline Latest"
+    ) {
+      return (
+        new Date(
+          b.due_datetime || "0"
+        ).getTime() -
+        new Date(
+          a.due_datetime || "0"
+        ).getTime()
+      );
+    }
+
+    return 0;
+  });
 
   return (
     <section className="task-page">
@@ -164,28 +256,75 @@ const TaskPage = () => {
       <div className="home-strip task-strip">
         <h1>Tasks</h1>
 
-        <button
-          className="add-task-btn"
-          onClick={() => setShowAdd(true)}
-        >
-          + Add Task
-        </button>
+        <div className="task-tools">
+          <select
+            value={filter}
+            onChange={(e) =>
+              setFilter(
+                e.target.value
+              )
+            }
+          >
+            <option>All</option>
+            <option>Pending</option>
+            <option>
+              Completed
+            </option>
+            <option>Overdue</option>
+          </select>
+
+          <select
+            value={sortBy}
+            onChange={(e) =>
+              setSortBy(
+                e.target.value
+              )
+            }
+          >
+            <option>Newest</option>
+            <option>Oldest</option>
+            <option>
+              Deadline Soonest
+            </option>
+            <option>
+              Deadline Latest
+            </option>
+          </select>
+
+          <button
+            className="add-task-btn"
+            onClick={() =>
+              setShowAdd(true)
+            }
+          >
+            + Add Task
+          </button>
+        </div>
       </div>
 
       {/* TASK GRID */}
       <div className="task-grid">
-        {tasks.map((task) => {
-          const done = task.status === "Completed";
+        {finalTasks.map((task) => {
+          const done =
+            task.status ===
+            "Completed";
 
           return (
-            <div key={task.id} className="task-card">
+            <div
+              key={task.id}
+              className="task-card"
+            >
               <span
                 className={`status-dot ${
-                  done ? "done" : "pending"
+                  done
+                    ? "done"
+                    : "pending"
                 }`}
               />
 
-              <h3 className="task-title">{task.title}</h3>
+              <h3 className="task-title">
+                {task.title}
+              </h3>
 
               <p className="task-desc">
                 {task.description}
@@ -193,7 +332,9 @@ const TaskPage = () => {
 
               <p className="task-meta">
                 Deadline:{" "}
-                {formatDeadline(task.due_datetime)}
+                {formatDeadline(
+                  task.due_datetime
+                )}
               </p>
 
               <p className="task-meta">
@@ -212,7 +353,9 @@ const TaskPage = () => {
               <div className="task-actions">
                 <button
                   className="icon-btn edit"
-                  onClick={() => openEdit(task)}
+                  onClick={() =>
+                    openEdit(task)
+                  }
                 >
                   ✎
                 </button>
@@ -220,7 +363,9 @@ const TaskPage = () => {
                 <button
                   className="icon-btn delete"
                   onClick={() =>
-                    confirmDelete(task)
+                    confirmDelete(
+                      task
+                    )
                   }
                 >
                   🗑
@@ -230,7 +375,9 @@ const TaskPage = () => {
                   <button
                     className="icon-btn done"
                     onClick={() =>
-                      confirmComplete(task)
+                      confirmComplete(
+                        task
+                      )
                     }
                   >
                     ✓
@@ -266,13 +413,13 @@ const TaskPage = () => {
               }
             />
 
+            <p className="modal-label">Deadline</p>
+
             <input
               className="modal-input"
               type="datetime-local"
               value={newDeadline}
-              onChange={(e) =>
-                setNewDeadline(e.target.value)
-              }
+              onChange={(e) => setNewDeadline(e.target.value)}
             />
 
             <div className="modal-actions">
@@ -317,13 +464,13 @@ const TaskPage = () => {
               }
             />
 
+            <p className="modal-label">Deadline</p>
+
             <input
               className="modal-input"
               type="datetime-local"
               value={formDeadline}
-              onChange={(e) =>
-                setFormDeadline(e.target.value)
-              }
+              onChange={(e) => setFormDeadline(e.target.value)}
             />
 
             <div className="modal-actions">
