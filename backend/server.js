@@ -5,19 +5,10 @@ const app = express();
 const db = require("./db");
 const cron = require("node-cron");
 
-app.use(cors());
 app.use(express.json());
-
-/* ================= TEST EMAIL ================= */
-app.get("/send-test", async (req, res) => {
-  await sendEmail(
-    "vinukjithsara278@gmail.com",
-    "Test Email",
-    "<h1>Working bro 🔥</h1>"
-  );
-
-  res.send("Mail Sent");
-});
+app.use(cors({   origin: process.env.FRONTEND_URL, 
+                 methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+                 credentials: true }));
 
 /* ================= REGISTER ================= */
 app.post("/api/register", (req, res) => {
@@ -334,6 +325,7 @@ cron.schedule("* * * * *", () => {
   );
 });
 
-app.listen(5000, () => {
-  console.log("Server running on 5000 🚀");
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT} 🚀`);
 });
