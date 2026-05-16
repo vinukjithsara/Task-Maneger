@@ -15,7 +15,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (!userId) return;
 
-    fetch(`http://localhost:5000/api/tasks/${userId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/tasks/${userId}`)
       .then(res => res.json())
       .then(data => setTodos(data))
       .catch(err => console.log(err));

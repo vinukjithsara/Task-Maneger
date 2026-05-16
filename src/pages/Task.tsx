@@ -36,7 +36,7 @@ const TaskPage = () => {
 
     if (!userId) return;
 
-    fetch(`http://localhost:5000/api/tasks/${userId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/tasks/${userId}`)
       .then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err));
@@ -53,7 +53,7 @@ const TaskPage = () => {
     if (!newTitle.trim()) return;
     if (!userId) return;
 
-    fetch("http://localhost:5000/api/tasks", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const TaskPage = () => {
     if (!selectedTask) return;
 
     fetch(
-      `http://localhost:5000/api/tasks/${selectedTask.id}`,
+      `${import.meta.env.VITE_API_URL}/api/tasks/${selectedTask.id}`,
       {
         method: "PUT",
         headers: {
@@ -130,7 +130,7 @@ const TaskPage = () => {
     if (!selectedTask) return;
 
     fetch(
-      `http://localhost:5000/api/tasks/complete/${selectedTask.id}`,
+      `${import.meta.env.VITE_API_URL}/api/tasks/complete/${selectedTask.id}`,
       {
         method: "PUT",
       }
@@ -152,7 +152,7 @@ const TaskPage = () => {
     if (!selectedTask) return;
 
     fetch(
-      `http://localhost:5000/api/tasks/${selectedTask.id}`,
+      `${import.meta.env.VITE_API_URL}/api/tasks/${selectedTask.id}`,
       {
         method: "DELETE",
       }
