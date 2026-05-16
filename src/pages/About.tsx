@@ -1,3 +1,4 @@
+import logo from '/src/assets/logo.jpg'
 type AboutProps = {
   isLoggedIn: boolean;
 };
@@ -15,7 +16,7 @@ const About = ({ isLoggedIn }: AboutProps) => {
       <div className="about-content">
 
         <div className="about-logo-pill">
-          <img src="/src/assets/logo.jpg" alt="Worktrack logo" />
+         <img src={logo} alt="Worktrack2010" />
         </div>
 
         {!isLoggedIn ? (
