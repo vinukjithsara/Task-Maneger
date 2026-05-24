@@ -1289,6 +1289,16 @@ textarea.modal-input {
   color:#ff4d6d;
 }
 
+.done-text{
+  color:#22c55e;
+  font-weight:700;
+}
+
+.pending-text{
+  color:#facc15;
+  font-weight:700;
+}
+
 /* ================= ELITE TASK CARDS ================= */
 
 .task-card{
