@@ -101,16 +101,17 @@ The application helps users organize daily workflows, manage priorities, track d
 # 📸 Screenshots
 
 ## 🖥️ Dashboard
-![Dashboard](./screenshots/dashboard.png)
+![Dashboard](./src/assets/dashboard.png)
+![Dashboard 2](./src/assets/dashboard2.png)
 
 ## ➕ Create Task
-![Create Task](./screenshots/create-task.png)
+![Create Task](./src/assets/create-task.png)
 
 ## ✏️ Edit Task
-![Edit Task](./screenshots/edit-task.png)
+![Edit Task](./src/assets/edit-task.png)
 
 ## 🔐 Authentication
-![Authentication](./screenshots/auth.png)
+![Authentication](./src/assets/auth.png)
 
 ---
 
