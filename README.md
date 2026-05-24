@@ -1,142 +1,345 @@
-# 📝 Project Title: [Your App Name, e.g., FocusTask Manager]
- 
-<!-- ONE SENTENCE HOOK -->
+# � WorkTrack
 
-A clean, state-driven Android application engineered to help [target users, e.g., students/developers] organize daily workflows, track deadlines, and prioritize execution pipelines seamlessly.
- 
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express)
+![SQL](https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+
 ---
- 
-## 📸 Application Demo
- 
-| Active Dashboard View | Task Creation Layer | Task Deletion Action |
 
-| :---: | :---: | :---: |
+# 📌 Overview
 
-| <!-- PLACEHOLDER: Replace the URL below with a link to your own screenshot/GIF --> <img src="https://via.placeholder.com/200x400.png?text=Dashboard+Screen" width="200"/> | <!-- PLACEHOLDER: Replace the URL below with a link to your own screenshot/GIF --> <img src="https://via.placeholder.com/200x400.png?text=Create+Task+Screen" width="200"/> | <!-- PLACEHOLDER: Replace the URL below with a link to your own screenshot/GIF --> <img src="https://via.placeholder.com/200x400.png?text=Delete+Task+Animation" width="200"/> |
- 
-### 🎥 Walkthrough Video
-> [!TIP]
-> 📺 **[Click Here to Watch the Full 60-Second Video Demo](🟢_PASTE_YOUR_YOUTUBE_OR_LOM_VIDEO_LINK_HERE_🟢)**
- 
+A modern full-stack task management web application built using **React**, **TypeScript**, **Node.js**, and **Express.js**.  
+The application helps users organize daily workflows, manage priorities, track deadlines, and improve productivity with a clean and responsive interface.
+
 ---
- 
-## 🚀 Key Features
- 
-*   **Dynamic Task Management:** Instantly instantiate tasks with custom titles, rich descriptions, and structural target due dates.
 
-*   **State-Driven Priority Matrix:** Categorize operations using reactive `High`, `Medium`, or `Low` priority metadata tags that dynamically color-code the user interface.
+# 🌐 Live Demo
 
-*   **Persistent Architecture:** Integrated local storage mapping rules to ensure user configuration data and logs persist across application sessions.
+🚀 **[View Live Application](https://task-manager-three.vercel.app/)**
 
-*   **Responsive State Updates:** Immediate layout state propagation that seamlessly shifts components out of view when tasks are marked complete or purged.
- 
 ---
- 
-## 🛠️ Technical Stack
- 
-*   **Programming Language:** Kotlin
 
-*   **User Interface Framework:** Jetpack Compose (Material 3 Adaptive Design Library)
+# ✨ Features
 
-*   **Local Data Architecture:** Room Database (SQLite Relational Management Layer)
+## 📋 Task Management
+- Create tasks with titles, descriptions, and due dates
+- Edit existing tasks
+- Delete completed or unnecessary tasks
+- View detailed task information
 
-*   **Concurrency Pipelines:** Kotlin Coroutines & Asynchronous Flow Engine
- 
+## 🚦 Priority System
+- High Priority
+- Medium Priority
+- Low Priority
+
+## 🔐 Authentication
+- Secure JWT-based authentication
+- User signup and login system
+- Protected routes and session handling
+
+## 🎨 Responsive User Interface
+- Modern dashboard layout
+- Mobile-friendly responsive design
+- Smooth navigation experience
+- Reusable React components
+
+## ⚡ Backend API
+- RESTful API architecture
+- Full CRUD functionality
+- SQL database integration
+- Secure data handling
+
 ---
- 
-## 🏁 Getting Started
- 
-Follow these step-by-step instructions to pull down the repository source and compile a localized build instance on your development computer.
- 
-### 📋 Prerequisites
 
-Ensure your development computer satisfies these environment version parameters:
+# 🛠️ Tech Stack
 
-*   **IDE Target:** Android Studio Ladybug (2024.2.1) or higher
+## Frontend
+| Technology | Purpose |
+|---|---|
+| React | UI Development |
+| TypeScript | Type Safety |
+| Vite | Build Tool |
+| CSS | Styling |
 
-*   **Runtime Target:** Java Development Kit (JDK) 17 architecture runtime
+## Backend
+| Technology | Purpose |
+|---|---|
+| Node.js | Runtime Environment |
+| Express.js | Backend Framework |
+| SQL (MySQL/SQLite) | Database |
+| JWT | Authentication |
 
-*   **System Layer:** Android SDK Platform Target API Level 34
- 
-### 💻 Installation & Local Deployment
-
-1. **Clone the remote version registry:**
-
-   ```bash
-
-   git clone [https://github.com/your-username/your-repository-name.git](https://github.com/your-username/your-repository-name.git)
-
-   Here is the raw Markdown text for a complete, production-grade **Task Manager README Template**. It includes clear placeholders for screenshots, video links, or animated GIFs so your students know exactly where and how to showcase their visual assets.
- 
-Copy and paste the code block below directly into your student chat channel:
-
-```markdown
-
-# 📝 Project Title: [Your App Name, e.g., FocusTask Manager]
- 
-<!-- ONE SENTENCE HOOK -->
-
-A clean, state-driven Android application engineered to help [target users, e.g., students/developers] organize daily workflows, track deadlines, and prioritize execution pipelines seamlessly.
- 
 ---
- 
-## 📸 Application Demo
- 
-| Active Dashboard View | Task Creation Layer | Task Deletion Action |
 
-| :---: | :---: | :---: |
+# 🏗️ System Architecture
 
-| <!-- PLACEHOLDER: Replace the URL below with a link to your own screenshot/GIF --> <img src="https://via.placeholder.com/200x400.png?text=Dashboard+Screen" width="200"/> | <!-- PLACEHOLDER: Replace the URL below with a link to your own screenshot/GIF --> <img src="https://via.placeholder.com/200x400.png?text=Create+Task+Screen" width="200"/> | <!-- PLACEHOLDER: Replace the URL below with a link to your own screenshot/GIF --> <img src="https://via.placeholder.com/200x400.png?text=Delete+Task+Animation" width="200"/> |
- 
-### 🎥 Walkthrough Video
-> [!TIP]
-> 📺 **[Click Here to Watch the Full 60-Second Video Demo](🟢_PASTE_YOUR_YOUTUBE_OR_LOM_VIDEO_LINK_HERE_🟢)**
- 
+```text
+┌──────────────────┐
+│  React Frontend  │
+│  (TypeScript)    │
+└────────┬─────────┘
+         │ HTTP/REST API
+         ▼
+┌──────────────────┐
+│  Express Backend │
+│   (Node.js)      │
+└────────┬─────────┘
+         │ SQL Queries
+         ▼
+┌──────────────────┐
+│   SQL Database   │
+│ (MySQL/SQLite)   │
+└──────────────────┘
+```
+
 ---
- 
-## 🚀 Key Features
- 
-*   **Dynamic Task Management:** Instantly instantiate tasks with custom titles, rich descriptions, and structural target due dates.
 
-*   **State-Driven Priority Matrix:** Categorize operations using reactive `High`, `Medium`, or `Low` priority metadata tags that dynamically color-code the user interface.
+# 📸 Screenshots
 
-*   **Persistent Architecture:** Integrated local storage mapping rules to ensure user configuration data and logs persist across application sessions.
+## 🖥️ Dashboard
+![Dashboard](./screenshots/dashboard.png)
 
-*   **Responsive State Updates:** Immediate layout state propagation that seamlessly shifts components out of view when tasks are marked complete or purged.
- 
+## ➕ Create Task
+![Create Task](./screenshots/create-task.png)
+
+## ✏️ Edit Task
+![Edit Task](./screenshots/edit-task.png)
+
+## 🔐 Authentication
+![Authentication](./screenshots/auth.png)
+
 ---
- 
-## 🛠️ Technical Stack
- 
-*   **Programming Language:** Kotlin
 
-*   **User Interface Framework:** Jetpack Compose (Material 3 Adaptive Design Library)
+# 🚀 Getting Started
 
-*   **Local Data Architecture:** Room Database (SQLite Relational Management Layer)
+## 📋 Prerequisites
 
-*   **Concurrency Pipelines:** Kotlin Coroutines & Asynchronous Flow Engine
- 
+Make sure your system has:
+
+- Node.js (v16 or later)
+- npm or yarn
+- Git
+- SQL Database (MySQL or SQLite)
+
 ---
- 
-## 🏁 Getting Started
- 
-Follow these step-by-step instructions to pull down the repository source and compile a localized build instance on your development computer.
- 
-### 📋 Prerequisites
 
-Ensure your development computer satisfies these environment version parameters:
+# 💻 Installation
 
-*   **IDE Target:** Android Studio Ladybug (2024.2.1) or higher
+## 1️⃣ Clone Repository
 
-*   **Runtime Target:** Java Development Kit (JDK) 17 architecture runtime
+```bash
+git clone https://github.com/your-username/task-manager.git
+cd task-manager
+```
 
-*   **System Layer:** Android SDK Platform Target API Level 34
- 
-### 💻 Installation & Local Deployment
+---
 
-1. **Clone the remote version registry:**
+## 2️⃣ Install Frontend Dependencies
 
-   ```bash
+```bash
+npm install
+```
 
-   git clone [https://github.com/your-username/your-repository-name.git](https://github.com/your-username/your-repository-name.git)
- 
+---
+
+## 3️⃣ Install Backend Dependencies
+
+```bash
+cd backend
+npm install
+cd ..
+```
+
+---
+
+## 4️⃣ Configure Environment Variables
+
+### Frontend `.env`
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+### Backend `.env`
+
+```env
+PORT=5000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=task_manager
+NODE_ENV=development
+JWT_SECRET=your_secret_key
+```
+
+---
+
+## 5️⃣ Start Frontend
+
+```bash
+npm run dev
+```
+
+---
+
+## 6️⃣ Start Backend
+
+```bash
+cd backend
+npm start
+```
+
+---
+
+# 📁 Project Structure
+
+```text
+src/
+├── components/
+├── pages/
+├── types/
+├── assets/
+└── services/
+
+backend/
+├── server.js
+├── db.js
+├── routes/
+├── middleware/
+├── controllers/
+├── mailer.js
+└── package.json
+```
+
+---
+
+# 🔌 API Endpoints
+
+## 📋 Task Routes
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/tasks` | Get all tasks |
+| POST | `/api/tasks` | Create a task |
+| GET | `/api/tasks/:id` | Get task details |
+| PUT | `/api/tasks/:id` | Update task |
+| DELETE | `/api/tasks/:id` | Delete task |
+
+---
+
+## 🔐 Authentication Routes
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/signup` | Register user |
+| POST | `/api/auth/login` | Login user |
+| POST | `/api/auth/logout` | Logout user |
+
+---
+
+# 🔧 Available Scripts
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start frontend |
+| `npm run build` | Build application |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+
+---
+
+# 🛠️ Troubleshooting
+
+## Port Already In Use
+
+```powershell
+Get-Process -Id (Get-NetTCPConnection -LocalPort 5000 -ErrorAction Ignore).OwningProcess | Stop-Process
+```
+
+---
+
+## Database Connection Issues
+
+- Ensure MySQL/SQLite server is running
+- Verify `.env` credentials
+- Confirm database exists
+
+---
+
+## Frontend Cannot Connect to Backend
+
+- Verify backend server is running
+- Check `VITE_API_URL`
+- Inspect browser console for CORS issues
+
+---
+
+## Dependency Errors
+
+```bash
+rm -r node_modules package-lock.json
+npm install
+```
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+## Steps
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature/your-feature
+```
+
+3. Commit changes
+
+```bash
+git commit -m "Add your feature"
+```
+
+4. Push changes
+
+```bash
+git push origin feature/your-feature
+```
+
+5. Open a Pull Request
+
+---
+
+# 🐞 Reporting Issues
+
+When reporting bugs, please include:
+
+- Problem description
+- Steps to reproduce
+- Expected behavior
+- Screenshots if applicable
+
+---
+
+# 📜 License
+
+This project is developed for educational and portfolio purposes.
+
+---
+
+# 👨‍💻 Author
+
+**Vinuk Jithsara**
+
+- Full-Stack Developer
+- Passionate about modern web applications and clean UI design
+
+---
+
+Made with ❤️ using React, TypeScript, Node.js, and Express.js.
