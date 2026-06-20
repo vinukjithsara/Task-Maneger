@@ -21,9 +21,7 @@ The application helps users organize daily workflows, manage priorities, track d
 
 🚀 **[View Live Application](https://task-maneger-three.vercel.app)**
 
-[![Watch the video](<img width="1919" height="1019" alt="image" src="https://github.com/user-attachments/assets/e55544fe-b4a6-4fa0-94dd-41e6404bb7d3" />
-)](https://youtu.be/dZYch9NAEYk))
-
+<a href="https://youtu.be/dZYch9NAEYk" target="_blank"><img width="1919" height="1019" alt="Watch the video" src="https://github.com/user-attachments/assets/e55544fe-b4a6-4fa0-94dd-41e6404bb7d3" /></a>
 ---
 
 # ✨ Features
