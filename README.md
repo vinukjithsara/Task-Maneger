@@ -1,4 +1,4 @@
-<img width="1919" height="917" alt="image" src="https://github.com/user-attachments/assets/2fe0f457-102f-4fe5-a5c8-40878ab4b06a" /># � WorkTrack
+# � WorkTrack
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
@@ -21,7 +21,7 @@ The application helps users organize daily workflows, manage priorities, track d
 
 🚀 **[View Live Application](https://task-maneger-three.vercel.app)**
 
-![Dashboard](./src/assets/dashboard.png)
+[![Watch the video](./src/assets/dashboard.png)]([https://youtu.be/dQw4w9WgXcQ](https://youtu.be/dZYch9NAEYk))
 ---
 
 # ✨ Features
