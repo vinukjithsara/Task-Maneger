@@ -264,4 +264,3 @@
 
 }
  
-.chat-fab,.chat-container{position: fixed;/* pin to screen */transform:translateZ(0);/* escape parent stacking context */will-change: transform;/* GPU layer + reinforce the escape */}
