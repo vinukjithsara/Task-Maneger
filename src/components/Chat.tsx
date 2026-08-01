@@ -103,7 +103,6 @@ const Chat = () => {
         onClick={() => setIsOpen((prev) => !prev)}
         title="AI Task Assistant"
 >
-        {isOpen ? "✕" : "🤖"}
 </button>
  
       {/* Chat panel — only shown when isOpen is true */}
