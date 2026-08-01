@@ -12,7 +12,7 @@ import Signup from "./pages/Signup";
 import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
 import TaskPage from "./pages/Task";
-import Chat from "./components/chat.tsx";
+import Chat from "./components/Chat";
 
 type PageTransitionProps = {
   children: ReactNode;
