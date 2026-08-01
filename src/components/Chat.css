@@ -212,3 +212,54 @@
   color: #64748b;
   cursor: not-allowed;
 }
+
+.chat-fab {
+
+  position: fixed;
+
+  bottom: 24px;
+
+  right: 24px;
+
+  width: 64px;
+
+  height: 64px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  cursor: pointer;
+
+  z-index: 1000;
+ 
+  /* This creates the glowing orb effect */
+
+  background: radial-gradient(circle at 35% 35%, #60a5fa, #2563eb 50%, #1e3a8a);
+
+  box-shadow:
+
+    0 0 15px rgba(37, 99, 235, 0.6),   /* inner glow */
+
+    0 0 40px rgba(37, 99, 235, 0.3),   /* outer glow */
+
+    0 0 80px rgba(37, 99, 235, 0.1);   /* far glow */
+ 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+ 
+.chat-fab:hover {
+
+  transform: scale(1.12);
+
+  box-shadow:
+
+    0 0 20px rgba(37, 99, 235, 0.8),
+
+    0 0 60px rgba(37, 99, 235, 0.4),
+
+    0 0 100px rgba(37, 99, 235, 0.2);
+
+}
+ 
