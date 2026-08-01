@@ -11,7 +11,7 @@
   font-family: Arial, sans-serif;
   background: #0f172a;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  position: fixed;
+  
 }
 
 .chat-header {
@@ -264,3 +264,4 @@
 
 }
  
+.chat-fab,.chat-container{position: fixed;/* pin to screen */transform:translateZ(0);/* escape parent stacking context */will-change: transform;/* GPU layer + reinforce the escape */}
