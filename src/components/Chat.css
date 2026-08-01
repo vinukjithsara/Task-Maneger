@@ -1,16 +1,18 @@
 .chat-container {
+  position: fixed;
+  bottom: 88px;
+  right: 24px;
+  width: 350px;
+  height: 480px;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 480px;
-  height: 90vh;
   border: 1px solid #1e293b;
   border-radius: 12px;
   overflow: hidden;
   font-family: Arial, sans-serif;
   background: #0f172a;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-
+  z-index: 999;
 }
 
 .chat-header {
