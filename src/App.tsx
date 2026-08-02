@@ -13,6 +13,10 @@ import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
 import TaskPage from "./pages/Task";
 import Chat from "./components/Chat";
+import LegalNotice from "./pages/LegalNotice";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import Profile from "./pages/Profile";
 
 type PageTransitionProps = {
   children: ReactNode;
@@ -113,6 +117,33 @@ const AnimatedRoutes = ({
           }
         />
 
+        <Route
+          path="/legal-notice"
+          element={
+            <PageTransition>
+              <LegalNotice />
+            </PageTransition>
+          }
+        />
+
+        <Route
+          path="/privacy-policy"
+          element={
+            <PageTransition>
+              <PrivacyPolicy />
+            </PageTransition>
+          }
+        />
+
+        <Route
+          path="/cookie-policy"
+          element={
+            <PageTransition>
+              <CookiePolicy />
+            </PageTransition>
+          }
+        />
+
         {/* PROTECTED ROUTES */}
         <Route
           path="/dashboard"
@@ -133,6 +164,19 @@ const AnimatedRoutes = ({
             isLoggedIn ? (
               <PageTransition>
                 <TaskPage />
+              </PageTransition>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            isLoggedIn ? (
+              <PageTransition>
+                <Profile />
               </PageTransition>
             ) : (
               <Navigate to="/login" />

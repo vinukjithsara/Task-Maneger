@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 
@@ -6,8 +7,35 @@ type NavbarProps = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+const getInitials = (value: string) => {
+  const parts = value.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "U";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+};
+
 const Navbar = ({ isLoggedIn, setIsLoggedIn }: NavbarProps) => {
   const navigate = useNavigate();
+  const [avatar, setAvatar] = useState<string | null>(null);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const readProfile = () => {
+      setAvatar(localStorage.getItem("userAvatar"));
+      setUserName(localStorage.getItem("userName") || "");
+    };
+
+    readProfile();
+
+    window.addEventListener("profile-updated", readProfile);
+    window.addEventListener("focus", readProfile);
+
+    return () => {
+      window.removeEventListener("profile-updated", readProfile);
+      window.removeEventListener("focus", readProfile);
+    };
+  }, [isLoggedIn]);
+
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `nav-link${isActive ? " active" : ""}`;
   const closeMobileMenu = () => {
@@ -98,18 +126,34 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }: NavbarProps) => {
                   </button>
                 </>
               ) : (
-                <button
-                  className="btn px-3 py-1 rounded-3 nav-action-btn logout"
-                  data-bs-dismiss="offcanvas"
-                  onClick={() => {
-                    localStorage.removeItem("userId");
-                    localStorage.removeItem("userName");
-                    setIsLoggedIn(false);
-                    navigate("/");
-                  }}
-                >
-                  Logout
-                </button>
+                <>
+                  <Link
+                    to="/profile"
+                    className="nav-avatar"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Profile"
+                  >
+                    {avatar ? (
+                      <img src={avatar} alt="" />
+                    ) : (
+                      <span>{getInitials(userName)}</span>
+                    )}
+                  </Link>
+
+                  <button
+                    className="btn px-3 py-1 rounded-3 nav-action-btn logout"
+                    data-bs-dismiss="offcanvas"
+                    onClick={() => {
+                      localStorage.removeItem("userId");
+                      localStorage.removeItem("userName");
+                      localStorage.removeItem("userAvatar");
+                      setIsLoggedIn(false);
+                      navigate("/");
+                    }}
+                  >
+                    Logout
+                  </button>
+                </>
               )}
             </div>
 

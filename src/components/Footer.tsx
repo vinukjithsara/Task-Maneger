@@ -89,9 +89,9 @@ const Footer = () => {
       <div className="footer-bottom">
         <p>&copy; 2026 WorkTrack. All rights reserved.</p>
         <div className="footer-legal">
-          <a href="/">Legal Notice</a>
-          <a href="/">Privacy Policy</a>
-          <a href="/">Cookie Policy</a>
+          <Link to="/legal-notice">Legal Notice</Link>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/cookie-policy">Cookie Policy</Link>
         </div>
       </div>
     </footer>
