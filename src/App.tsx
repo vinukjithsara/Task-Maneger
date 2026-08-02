@@ -98,9 +98,7 @@ const AnimatedRoutes = ({
               <Navigate to="/dashboard" />
             ) : (
               <PageTransition>
-                <Login
-                  setIsLoggedIn={setIsLoggedIn}
-                />
+                <Login setIsLoggedIn={setIsLoggedIn} />
               </PageTransition>
             )
           }
@@ -177,7 +175,7 @@ function App() {
       />
 
       <Footer />
-      {isLoggedIn && <Chat/>}
+      {isLoggedIn && <Chat />}
     </BrowserRouter>
   );
 }

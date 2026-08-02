@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import Logo from "../components/Logo";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -16,7 +16,6 @@ const Signup = () => {
     if (loading) return;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // ✅ VALIDATIONS (same as your code)
     if (!emailRegex.test(email)) {
       setError("Please enter a valid email address");
       return;
@@ -44,13 +43,13 @@ const Signup = () => {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/register`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: username, // 🔥 important mapping
+          name: username,
           email,
-          password
-        })
+          password,
+        }),
       });
 
       const data = await res.json();
@@ -63,9 +62,7 @@ const Signup = () => {
 
       alert("Signup successful ✅");
       navigate("/login");
-
       setLoading(false);
-
     } catch (err) {
       console.log(err);
       setError("Server error");
@@ -73,65 +70,118 @@ const Signup = () => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") handleSignup();
+  };
+
   return (
     <section className="auth-page">
-      <div className="home-strip">
-        <h1>Sign Up</h1>
-      </div>
+      <div className="auth-shell">
+        <div className="auth-visual">
+          <div className="auth-visual-glow" aria-hidden="true" />
+          <Logo className="auth-visual-logo" />
+          <h2>
+            Join WorkTrack
+            <br />
+            in seconds.
+          </h2>
+          <p>
+            Break down goals into tasks, stay on top of deadlines, and get
+            more done — every day.
+          </p>
 
-      <div className="auth-card">
-        <div className="auth-logo">
-          <img src={logo} alt="Worktrack" />
+          <ul className="auth-visual-points">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 13 4 4L19 7" />
+              </svg>
+              Free to get started
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 13 4 4L19 7" />
+              </svg>
+              Your data stays private
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 13 4 4L19 7" />
+              </svg>
+              Set up in under a minute
+            </li>
+          </ul>
         </div>
 
-        <p className="auth-title">
-          SIGN UP TO START <span>WORKING SMARTER</span>
-        </p>
+        <div className="auth-form-panel">
+          <span className="hero-pill">Join WorkTrack</span>
+          <h1 className="auth-form-title">Create your account</h1>
+          <p className="auth-form-sub">Start working smarter today.</p>
 
-        {error && <p className="auth-error">{error}</p>}
+          {error && <p className="auth-error">{error}</p>}
 
-        <input
-          type="email"
-          placeholder="EMAIL"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <label className="auth-field">
+            <span>Email</span>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </label>
 
-        <input
-          type="text"
-          placeholder="USERNAME"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+          <label className="auth-field">
+            <span>Username</span>
+            <input
+              type="text"
+              placeholder="Your name"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </label>
 
-        <input
-          type="password"
-          placeholder="PASSWORD"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <label className="auth-field">
+            <span>Password</span>
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </label>
 
-        <input
-          type="password"
-          placeholder="CONFIRM PASSWORD"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+          <label className="auth-field">
+            <span>Confirm Password</span>
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </label>
 
-        <button className="auth-btn" onClick={handleSignup} disabled={loading}>
-          {loading ? (
-            <>
-              <span className="btn-spinner" aria-hidden="true" /> SIGNING UP...
-            </>
-          ) : (
-            "SIGN UP"
-          )}
-        </button>
+          <button className="auth-submit" onClick={handleSignup} disabled={loading}>
+            {loading ? (
+              <>
+                <span className="btn-spinner" aria-hidden="true" /> Signing up...
+              </>
+            ) : (
+              <>
+                Sign Up
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </>
+            )}
+          </button>
 
-        <p className="auth-footer">
-          ALREADY HAVE AN ACCOUNT?{" "}
-          <Link to="/login">LOGIN</Link>
-        </p>
+          <p className="auth-footer">
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
+        </div>
       </div>
     </section>
   );

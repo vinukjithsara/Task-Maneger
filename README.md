@@ -71,8 +71,8 @@ The application helps users organize daily workflows, manage priorities, track d
 |---|---|
 | Node.js | Runtime Environment |
 | Express.js | Backend Framework |
-| SQL (MySQL/SQLite) | Database |
-| JWT | Authentication |
+| PostgreSQL (Supabase) | Database |
+| Groq | AI chatbot |
 
 ---
 
@@ -81,19 +81,18 @@ The application helps users organize daily workflows, manage priorities, track d
 ```text
 ┌──────────────────┐
 │  React Frontend  │
-│  (TypeScript)    │
+│  (TypeScript)    │        Vercel
 └────────┬─────────┘
          │ HTTP/REST API
          ▼
 ┌──────────────────┐
-│  Express Backend │
+│  Express Backend │        Render
 │   (Node.js)      │
 └────────┬─────────┘
          │ SQL Queries
          ▼
 ┌──────────────────┐
-│   SQL Database   │
-│ (MySQL/SQLite)   │
+│ Postgres Database │       Supabase
 └──────────────────┘
 ```
 
@@ -122,10 +121,10 @@ The application helps users organize daily workflows, manage priorities, track d
 
 Make sure your system has:
 
-- Node.js (v16 or later)
-- npm or yarn
+- Node.js (v18 or later)
+- npm
 - Git
-- SQL Database (MySQL or SQLite)
+- A Postgres database (Supabase or otherwise)
 
 ---
 
@@ -134,66 +133,54 @@ Make sure your system has:
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/your-username/task-manager.git
-cd task-manager
+git clone https://github.com/vinukjithsara/react.git
+cd react/my-react-app
 ```
 
 ---
 
-## 2️⃣ Install Frontend Dependencies
+## 2️⃣ Install Dependencies
 
 ```bash
 npm install
+cd "../Backend Worktrack" && npm install && cd -
 ```
 
 ---
 
-## 3️⃣ Install Backend Dependencies
+## 3️⃣ Configure Environment Variables
 
-```bash
-cd backend
-npm install
-cd ..
-```
-
----
-
-## 4️⃣ Configure Environment Variables
-
-### Frontend `.env`
+Copy `.env.example` to `.env` in `my-react-app/` (project root, not `src/`):
 
 ```env
 VITE_API_URL=http://localhost:5000
 ```
 
-### Backend `.env`
+Backend `.env` (in `Backend Worktrack/`):
 
 ```env
+DATABASE_URL=postgresql://...
+FRONTEND_URL=http://localhost:5173
 PORT=5000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_password
-DB_NAME=task_manager
-NODE_ENV=development
-JWT_SECRET=your_secret_key
+GROQ_API_KEY=
+GMAIL_USER=
+GMAIL_APP_PASSWORD=
 ```
 
 ---
 
-## 5️⃣ Start Frontend
+## 4️⃣ Run Locally
 
 ```bash
-npm run dev
+npm run dev                     # frontend, in my-react-app/
+node server.js                  # backend, in Backend Worktrack/
 ```
 
 ---
 
-## 6️⃣ Start Backend
+## 5️⃣ Deploy
 
-```bash
-cd backend
-npm start
-```
+Frontend deploys to Vercel; backend deploys to Render. Push to the connected branches for each.
 
 ---
 
@@ -203,16 +190,11 @@ npm start
 src/
 ├── components/
 ├── pages/
-├── types/
-├── assets/
-└── services/
+└── assets/
 
-backend/
+Backend Worktrack/
 ├── server.js
 ├── db.js
-├── routes/
-├── middleware/
-├── controllers/
 ├── mailer.js
 └── package.json
 ```
@@ -225,21 +207,24 @@ backend/
 
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/api/tasks` | Get all tasks |
+| GET | `/api/tasks/:userId` | Get all tasks for a user |
 | POST | `/api/tasks` | Create a task |
-| GET | `/api/tasks/:id` | Get task details |
 | PUT | `/api/tasks/:id` | Update task |
+| PUT | `/api/tasks/complete/:id` | Mark task completed |
 | DELETE | `/api/tasks/:id` | Delete task |
-
----
 
 ## 🔐 Authentication Routes
 
 | Method | Endpoint | Description |
 |---|---|---|
-| POST | `/api/auth/signup` | Register user |
-| POST | `/api/auth/login` | Login user |
-| POST | `/api/auth/logout` | Logout user |
+| POST | `/api/register` | Register user |
+| POST | `/api/login` | Login user |
+
+## 🤖 AI Assistant
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/chatbot` | Ask the AI assistant about your tasks |
 
 ---
 
@@ -259,24 +244,23 @@ backend/
 ## Port Already In Use
 
 ```powershell
-Get-Process -Id (Get-NetTCPConnection -LocalPort 5000 -ErrorAction Ignore).OwningProcess | Stop-Process
+Get-Process -Id (Get-NetTCPConnection -LocalPort 5173 -ErrorAction Ignore).OwningProcess | Stop-Process
 ```
-
----
-
-## Database Connection Issues
-
-- Ensure MySQL/SQLite server is running
-- Verify `.env` credentials
-- Confirm database exists
 
 ---
 
 ## Frontend Cannot Connect to Backend
 
-- Verify backend server is running
-- Check `VITE_API_URL`
-- Inspect browser console for CORS issues
+- Verify the backend server is running
+- Check `VITE_API_URL` in `my-react-app/.env` (must be in the project root, not `src/`)
+- Inspect the browser console for CORS issues — the backend's `FRONTEND_URL` env var must match the origin you're browsing from exactly
+
+---
+
+## Database Connection Issues
+
+- Verify `DATABASE_URL` in `Backend Worktrack/.env`
+- Confirm the Postgres database is reachable and the `users`/`tasks` tables exist
 
 ---
 

@@ -69,7 +69,7 @@ const Chat = () => {
         { role: "assistant", content: response.data.reply },
       ]);
  
-    } catch (err) {
+    } catch {
       setError("Could not reach the AI service. Please try again.");
     } finally {
       setLoading(false);

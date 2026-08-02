@@ -1,6 +1,5 @@
-import logo from '/src/assets/logo.png'
 import { Link, NavLink, useNavigate } from "react-router-dom";
-
+import Logo from "./Logo";
 
 type NavbarProps = {
   isLoggedIn: boolean;
@@ -25,7 +24,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }: NavbarProps) => {
         {/* LOGO */}
         <div className="logo-pill">
           <Link to="/">
-            <img src={logo} alt="logo" />
+            <Logo />
           </Link>
         </div>
 
@@ -103,6 +102,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }: NavbarProps) => {
                   className="btn px-3 py-1 rounded-3 nav-action-btn logout"
                   data-bs-dismiss="offcanvas"
                   onClick={() => {
+                    localStorage.removeItem("userId");
                     setIsLoggedIn(false);
                     navigate("/");
                   }}

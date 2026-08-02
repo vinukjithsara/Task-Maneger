@@ -1,0 +1,50 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo svg {
+  overflow: visible;
+  width: 2.2em;
+  height: 2.2em;
+}
+
+.logo-text {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  white-space: nowrap;
+}
+
+.logo-text .white {
+  color: #ffffff;
+}
+
+.logo-text .gradient {
+  background: linear-gradient(135deg, #7c4dff 0%, #6e56ff 40%, #4ea8ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* compact variant, used inside the hero dashboard mockup sidebar */
+.logo.small {
+  gap: 6px;
+}
+
+.logo.small .logo-text {
+  font-size: 0.72rem;
+  letter-spacing: -0.4px;
+}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import Logo from "../components/Logo";
 
 type LoginProps = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,16 +17,15 @@ const Login = ({ setIsLoggedIn }: LoginProps) => {
   const handleLogin = async () => {
     if (loading) return;
     setLoading(true);
+    setError("");
+
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email,
-          password
-        })
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
@@ -37,16 +36,10 @@ const Login = ({ setIsLoggedIn }: LoginProps) => {
         return;
       }
 
-      // ✅ SAVE USER ID
       localStorage.setItem("userId", data.user.id);
-
-      console.log("LOGIN SUCCESS:", data);
-
       setIsLoggedIn(true);
       navigate("/dashboard");
-
       setLoading(false);
-
     } catch (err) {
       console.log(err);
       setError("Server error");
@@ -54,54 +47,96 @@ const Login = ({ setIsLoggedIn }: LoginProps) => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") handleLogin();
+  };
+
   return (
     <section className="auth-page">
-      <div className="home-strip">
-        <h1>Login</h1>
-      </div>
+      <div className="auth-shell">
+        <div className="auth-visual">
+          <div className="auth-visual-glow" aria-hidden="true" />
+          <Logo className="auth-visual-logo" />
+          <h2>
+            Plan smarter.
+            <br />
+            Work better.
+          </h2>
+          <p>
+            WorkTrack keeps your tasks, deadlines, and progress in one
+            focused workspace — pick up right where you left off.
+          </p>
 
-      <div className="auth-card">
-        <div className="auth-logo">
-          <img src={logo} alt="Worktrack" />
+          <ul className="auth-visual-points">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 13 4 4L19 7" />
+              </svg>
+              Simple task tracking
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 13 4 4L19 7" />
+              </svg>
+              Deadline reminders
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 13 4 4L19 7" />
+              </svg>
+              Built-in AI assistant
+            </li>
+          </ul>
         </div>
 
-        <p className="auth-title">
-          WELCOME TO <span>WORKTRACK</span>
-        </p>
-        <p className="auth-subtitle">
-          PLEASE LOGIN TO CONTINUE
-        </p>
+        <div className="auth-form-panel">
+          <span className="hero-pill">Welcome back</span>
+          <h1 className="auth-form-title">Log in to your account</h1>
+          <p className="auth-form-sub">Enter your details to continue.</p>
 
-        {error && <p className="auth-error">{error}</p>}
+          {error && <p className="auth-error">{error}</p>}
 
-        <input
-          type="email"
-          placeholder="EMAIL"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <label className="auth-field">
+            <span>Email</span>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </label>
 
-        <input
-          type="password"
-          placeholder="PASSWORD"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <label className="auth-field">
+            <span>Password</span>
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </label>
 
-        <button className="auth-btn" onClick={handleLogin} disabled={loading}>
-          {loading ? (
-            <>
-              <span className="btn-spinner" aria-hidden="true" /> LOGGING IN...
-            </>
-          ) : (
-            "LOGIN"
-          )}
-        </button>
+          <button className="auth-submit" onClick={handleLogin} disabled={loading}>
+            {loading ? (
+              <>
+                <span className="btn-spinner" aria-hidden="true" /> Logging in...
+              </>
+            ) : (
+              <>
+                Login
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </>
+            )}
+          </button>
 
-        <p className="auth-footer">
-          DON’T HAVE AN ACCOUNT?{" "}
-          <Link to="/signup">SIGN UP</Link>
-        </p>
+          <p className="auth-footer">
+            Don’t have an account? <Link to="/signup">Sign up</Link>
+          </p>
+        </div>
       </div>
     </section>
   );
