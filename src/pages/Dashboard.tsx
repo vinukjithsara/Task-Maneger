@@ -57,9 +57,22 @@ const Dashboard = () => {
   return (
     <section className="dashboard-page">
 
-      {/* TOP STRIP */}
-      <div className="home-strip">
-        <h1>Dashboard</h1>
+      {/* HERO HEADER */}
+      <div className="hero-banner dashboard-hero">
+        <div className="hero-banner-bg" aria-hidden="true" />
+
+        <div className="dashboard-hero-container">
+          <div className="hero-banner-left">
+            <span className="hero-pill">Your Workspace</span>
+
+            <h1 className="hero-banner-title">Dashboard</h1>
+
+            <p className="hero-banner-desc">
+              A quick snapshot of today&apos;s progress — see what&apos;s
+              done and what&apos;s still pending.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="dashboard-content">

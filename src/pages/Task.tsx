@@ -367,53 +367,65 @@ const formatDeadline = (
 
   return (
     <section className="task-page">
-      {/* TOP BAR */}
-      <div className="home-strip task-strip">
-        <h1>Tasks</h1>
+      {/* HERO HEADER */}
+      <div className="hero-banner task-hero">
+        <div className="hero-banner-bg" aria-hidden="true" />
 
-        <div className="task-tools">
-          <select
-            value={filter}
-            onChange={(e) =>
-              setFilter(
-                e.target.value
-              )
-            }
-          >
-            <option>All</option>
-            <option>Pending</option>
-            <option>
-              Completed
-            </option>
-            <option>Overdue</option>
-          </select>
+        <div className="task-hero-container">
+          <div className="hero-banner-left">
+            <span className="hero-pill">Your Tasks</span>
 
-          <select
-            value={sortBy}
-            onChange={(e) =>
-              setSortBy(
-                e.target.value
-              )
-            }
-          >
-            <option>Newest</option>
-            <option>Oldest</option>
-            <option>
-              Deadline Soonest
-            </option>
-            <option>
-              Deadline Latest
-            </option>
-          </select>
+            <h1 className="hero-banner-title">Tasks</h1>
 
-          <button
-            className="add-task-btn"
-            onClick={() =>
-              setShowAdd(true)
-            }
-          >
-            + Add Task
-          </button>
+            <p className="hero-banner-desc">
+              Create, filter, and track every task in one place.
+            </p>
+          </div>
+
+          <div className="task-tools">
+            <select
+              value={filter}
+              onChange={(e) =>
+                setFilter(
+                  e.target.value
+                )
+              }
+            >
+              <option>All</option>
+              <option>Pending</option>
+              <option>
+                Completed
+              </option>
+              <option>Overdue</option>
+            </select>
+
+            <select
+              value={sortBy}
+              onChange={(e) =>
+                setSortBy(
+                  e.target.value
+                )
+              }
+            >
+              <option>Newest</option>
+              <option>Oldest</option>
+              <option>
+                Deadline Soonest
+              </option>
+              <option>
+                Deadline Latest
+              </option>
+            </select>
+
+            <button
+              className="add-task-btn"
+              onClick={() =>
+                setShowAdd(true)
+              }
+            >
+              + Add Task
+            </button>
+          </div>
         </div>
       </div>
 
