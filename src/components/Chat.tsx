@@ -4,6 +4,7 @@
  
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { AnimatePresence, motion } from "framer-motion";
 import "./Chat.css";
  
 const API_URL = import.meta.env.VITE_API_URL;
@@ -106,9 +107,17 @@ const Chat = () => {
 </button>
  
       {/* Chat panel — only shown when isOpen is true */}
-      {isOpen && (
-<div className="chat-container">
- 
+      <AnimatePresence>
+        {isOpen && (
+<motion.div
+            className="chat-container"
+            initial={{ opacity: 0, scale: 0.92, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 16 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            style={{ transformOrigin: "bottom right" }}
+>
+
           {/* Header */}
 <div className="chat-header">
 <div className="chat-header-info">
@@ -183,9 +192,10 @@ const Chat = () => {
               {loading ? "..." : "Send"}
 </button>
 </div>
- 
-        </div>
-      )}
+
+        </motion.div>
+        )}
+      </AnimatePresence>
 </>
   );
 };

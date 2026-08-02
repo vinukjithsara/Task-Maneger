@@ -103,6 +103,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }: NavbarProps) => {
                   data-bs-dismiss="offcanvas"
                   onClick={() => {
                     localStorage.removeItem("userId");
+                    localStorage.removeItem("userName");
                     setIsLoggedIn(false);
                     navigate("/");
                   }}

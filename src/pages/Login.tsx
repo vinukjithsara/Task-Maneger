@@ -37,6 +37,9 @@ const Login = ({ setIsLoggedIn }: LoginProps) => {
       }
 
       localStorage.setItem("userId", data.user.id);
+      if (data.user.name) {
+        localStorage.setItem("userName", data.user.name);
+      }
       setIsLoggedIn(true);
       navigate("/dashboard");
       setLoading(false);
