@@ -5,6 +5,7 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
+import { MessageCircle, X } from "lucide-react";
 import "./Chat.css";
  
 const API_URL = import.meta.env.VITE_API_URL;
@@ -98,13 +99,39 @@ const Chat = () => {
  
   return (
 <>
-      {/* Floating 🤖 button — fixed to bottom-right on every page */}
-<button
-        className="chat-fab"
+      {/* Floating button — fixed to bottom-right on every page */}
+<motion.button
+        className={`chat-fab ${isOpen ? "is-open" : ""}`}
         onClick={() => setIsOpen((prev) => !prev)}
         title="AI Task Assistant"
+        whileTap={{ scale: 0.9 }}
 >
-</button>
+        <AnimatePresence mode="wait" initial={false}>
+          {isOpen ? (
+<motion.span
+              key="close"
+              className="chat-fab-icon"
+              initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
+              animate={{ opacity: 1, rotate: 0, scale: 1 }}
+              exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+>
+              <X size={26} strokeWidth={2.4} />
+</motion.span>
+          ) : (
+<motion.span
+              key="open"
+              className="chat-fab-icon"
+              initial={{ opacity: 0, rotate: 90, scale: 0.6 }}
+              animate={{ opacity: 1, rotate: 0, scale: 1 }}
+              exit={{ opacity: 0, rotate: -90, scale: 0.6 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+>
+              <MessageCircle size={26} strokeWidth={2.4} />
+</motion.span>
+          )}
+        </AnimatePresence>
+</motion.button>
  
       {/* Chat panel — only shown when isOpen is true */}
       <AnimatePresence>

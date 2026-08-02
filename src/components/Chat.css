@@ -226,7 +226,12 @@
   border: none;
   cursor: pointer;
   z-index: 1000;
- 
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+
   /* This creates the glowing orb effect */
 
   background: radial-gradient(circle at 35% 35%, var(--worktrack-accent-light), var(--worktrack-accent) 50%, #2a1f70);
@@ -234,10 +239,48 @@
     0 0 15px rgba(var(--worktrack-accent-rgb), 0.6),   /* inner glow */
     0 0 40px rgba(var(--worktrack-accent-rgb), 0.3),   /* outer glow */
     0 0 80px rgba(var(--worktrack-accent-rgb), 0.1);   /* far glow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 
 }
- 
+
+.chat-fab::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--worktrack-accent-light-rgb), 0.55);
+  opacity: 0;
+  pointer-events: none;
+  animation: fabPulse 2.8s ease-out infinite;
+}
+
+@keyframes fabPulse {
+  0% {
+    transform: scale(0.86);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(1.38);
+    opacity: 0;
+  }
+}
+
+.chat-fab.is-open {
+  background: radial-gradient(circle at 35% 35%, var(--worktrack-accent), #2a1f70 60%, #1a1440);
+}
+
+.chat-fab.is-open::before {
+  animation: none;
+  opacity: 0;
+}
+
+.chat-fab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .chat-fab:hover {
   transform: scale(1.12);
   box-shadow:
@@ -246,4 +289,4 @@
     0 0 100px rgba(var(--worktrack-accent-rgb), 0.2);
 
 }
- 
+

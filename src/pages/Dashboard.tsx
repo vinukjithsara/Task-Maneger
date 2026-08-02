@@ -203,118 +203,116 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {todos.length === 0 ? (
-          <div className="no-tasks">
-            <img src={todoSvg} alt="No tasks" />
-            <p>No task created</p>
-          </div>
-        ) : (
-          <div className="dashboard-panels">
+        <div className="dashboard-panels">
 
-            {/* MY TASKS */}
-            <div className="dashboard-card dashboard-tasks-card">
-              <div className="dashboard-card-header">
-                <h2 className="section-title">
-                  My <span>Tasks</span>
-                </h2>
+          {/* MY TASKS */}
+          <div className="dashboard-card dashboard-tasks-card">
+            <div className="dashboard-card-header">
+              <h2 className="section-title">
+                My <span>Tasks</span>
+              </h2>
 
-                <div className="dashboard-tabs">
-                  {(["All", "Pending", "Completed"] as Tab[]).map(tab => (
-                    <button
-                      key={tab}
-                      className={activeTab === tab ? "active" : ""}
-                      onClick={() => setActiveTab(tab)}
+              <div className="dashboard-tabs">
+                {(["All", "Pending", "Completed"] as Tab[]).map(tab => (
+                  <button
+                    key={tab}
+                    className={activeTab === tab ? "active" : ""}
+                    onClick={() => setActiveTab(tab)}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {todos.length === 0 ? (
+              <div className="no-tasks">
+                <img src={todoSvg} alt="No tasks" />
+                <p>No task created</p>
+              </div>
+            ) : visibleTasks.length === 0 ? (
+              <p className="dashboard-empty-row">No tasks in this view.</p>
+            ) : (
+              <ul className="task-list">
+                {visibleTasks.map((todo) => {
+                  const statusKey = getStatusKey(todo);
+                  const deadlineLabel =
+                    statusKey === "completed" ? null : getDeadlineLabel(todo);
+
+                  return (
+                    <li
+                      key={todo.id}
+                      className={statusKey === "completed" ? "done" : ""}
                     >
-                      {tab}
-                    </button>
-                  ))}
-                </div>
+                      <div className="task-list-main">
+                        <span
+                          className={`task-list-status-dot ${statusKey}`}
+                          aria-hidden="true"
+                        >
+                          {statusKey === "completed" && (
+                            <svg viewBox="0 0 24 24">
+                              <path d="m5 13 4 4L19 7" />
+                            </svg>
+                          )}
+                        </span>
+
+                        <div className="task-list-text">
+                          <span className="task-list-title">{todo.title}</span>
+
+                          {deadlineLabel && (
+                            <span
+                              className={`task-list-deadline ${
+                                statusKey === "overdue" ? "overdue-text" : ""
+                              }`}
+                            >
+                              {deadlineLabel}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <span className={`status-pill status-pill-${statusKey}`}>
+                        {statusKey === "other" ? todo.status : statusLabels[statusKey]}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+
+          {/* PROGRESS + UPCOMING */}
+          <div className="dashboard-card dashboard-side-card">
+            <div className="dashboard-progress">
+              <div
+                className="dashboard-progress-ring"
+                style={{ "--progress": `${progressPercent}%` } as React.CSSProperties}
+              >
+                <span>{progressPercent}%</span>
               </div>
 
-              {visibleTasks.length === 0 ? (
-                <p className="dashboard-empty-row">No tasks in this view.</p>
+              <p className="dashboard-progress-label">Overall Progress</p>
+              <p className="dashboard-progress-sub">{progressSub}</p>
+            </div>
+
+            <div className="dashboard-upcoming">
+              <span className="dashboard-upcoming-title">Upcoming</span>
+
+              {upcomingTasks.length === 0 ? (
+                <p className="dashboard-upcoming-empty">Nothing scheduled.</p>
               ) : (
-                <ul className="task-list">
-                  {visibleTasks.map((todo) => {
-                    const statusKey = getStatusKey(todo);
-                    const deadlineLabel =
-                      statusKey === "completed" ? null : getDeadlineLabel(todo);
-
-                    return (
-                      <li
-                        key={todo.id}
-                        className={statusKey === "completed" ? "done" : ""}
-                      >
-                        <div className="task-list-main">
-                          <span
-                            className={`task-list-status-dot ${statusKey}`}
-                            aria-hidden="true"
-                          >
-                            {statusKey === "completed" && (
-                              <svg viewBox="0 0 24 24">
-                                <path d="m5 13 4 4L19 7" />
-                              </svg>
-                            )}
-                          </span>
-
-                          <div className="task-list-text">
-                            <span className="task-list-title">{todo.title}</span>
-
-                            {deadlineLabel && (
-                              <span
-                                className={`task-list-deadline ${
-                                  statusKey === "overdue" ? "overdue-text" : ""
-                                }`}
-                              >
-                                {deadlineLabel}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        <span className={`status-pill status-pill-${statusKey}`}>
-                          {statusKey === "other" ? todo.status : statusLabels[statusKey]}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
+                upcomingTasks.map(todo => (
+                  <div className="dashboard-upcoming-item" key={todo.id}>
+                    <span className="dashboard-upcoming-name">{todo.title}</span>
+                    <span className="dashboard-upcoming-time">
+                      {formatUpcomingDate(todo.due_datetime)}
+                    </span>
+                  </div>
+                ))
               )}
             </div>
-
-            {/* PROGRESS + UPCOMING */}
-            <div className="dashboard-card dashboard-side-card">
-              <div className="dashboard-progress">
-                <div
-                  className="dashboard-progress-ring"
-                  style={{ "--progress": `${progressPercent}%` } as React.CSSProperties}
-                >
-                  <span>{progressPercent}%</span>
-                </div>
-
-                <p className="dashboard-progress-label">Overall Progress</p>
-                <p className="dashboard-progress-sub">{progressSub}</p>
-              </div>
-
-              <div className="dashboard-upcoming">
-                <span className="dashboard-upcoming-title">Upcoming</span>
-
-                {upcomingTasks.length === 0 ? (
-                  <p className="dashboard-upcoming-empty">Nothing scheduled.</p>
-                ) : (
-                  upcomingTasks.map(todo => (
-                    <div className="dashboard-upcoming-item" key={todo.id}>
-                      <span className="dashboard-upcoming-name">{todo.title}</span>
-                      <span className="dashboard-upcoming-time">
-                        {formatUpcomingDate(todo.due_datetime)}
-                      </span>
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
           </div>
-        )}
+        </div>
 
       </div>
     </section>

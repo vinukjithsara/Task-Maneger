@@ -3800,6 +3800,22 @@ textarea.modal-input {
   }
 }
 
+.dashboard-tasks-card .no-tasks {
+  margin: 4px auto 0;
+  padding: 24px 12px 8px;
+  background: none;
+  box-shadow: none;
+}
+
+.dashboard-tasks-card .no-tasks img {
+  width: min(160px, 42%);
+  margin-bottom: 12px;
+}
+
+.dashboard-tasks-card .no-tasks p {
+  font-size: 15px;
+}
+
 .modal-actions {
   display: flex;
   justify-content: flex-end;
