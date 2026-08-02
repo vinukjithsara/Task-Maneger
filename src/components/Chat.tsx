@@ -116,7 +116,7 @@ const Chat = () => {
               exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
 >
-              <X size={26} strokeWidth={2.4} />
+              <X size={22} strokeWidth={2.4} />
 </motion.span>
           ) : (
 <motion.span
@@ -127,7 +127,7 @@ const Chat = () => {
               exit={{ opacity: 0, rotate: -90, scale: 0.6 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
 >
-              <MessageCircle size={26} strokeWidth={2.4} />
+              <MessageCircle size={22} strokeWidth={2.4} />
 </motion.span>
           )}
         </AnimatePresence>

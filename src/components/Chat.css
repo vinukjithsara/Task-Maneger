@@ -1,6 +1,6 @@
 .chat-container {
   position: fixed;
-  bottom: 88px;
+  bottom: 100px;
   right: 24px;
   width: 350px;
   height: 480px;
@@ -220,8 +220,8 @@
   position: fixed;
   bottom: 24px;
   right: 24px;
-  width: 64px;
-  height: 64px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -246,7 +246,7 @@
 .chat-fab::before {
   content: "";
   position: absolute;
-  inset: -6px;
+  inset: -5px;
   border-radius: 50%;
   border: 2px solid rgba(var(--worktrack-accent-light-rgb), 0.55);
   opacity: 0;
