@@ -2972,34 +2972,95 @@ a.btn:hover {
     text-shadow 0.22s ease;
 }
 
-.task-list li .completed-check,
 .task-card .completed-check {
   color: var(--worktrack-success-light);
   text-shadow: 0 0 10px rgba(var(--worktrack-success-light-rgb),0.42);
 }
 
 .completed-check:hover,
-.task-list li .completed-check:hover,
 .task-card .completed-check:hover {
   transform: translateY(-1px) scale(1.06);
   color: var(--worktrack-success-lighter);
   text-shadow: 0 0 14px rgba(var(--worktrack-success-lighter-rgb),0.52);
 }
 
-.dashboard-completed-check {
-  margin-left: 18px;
+/* ROW LAYOUT — status dot + title/deadline on the left, status pill on the right */
+.task-list-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
 }
 
-.task-list li.done span.completed-check.dashboard-completed-check {
+.task-list li .task-list-status-dot {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(var(--worktrack-fg-rgb), 0.3);
+}
+
+.task-list li .task-list-status-dot.pending {
+  background: #facc15;
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+}
+
+.task-list li .task-list-status-dot.overdue {
+  background: var(--worktrack-danger);
+  box-shadow: 0 0 10px rgba(var(--worktrack-danger-rgb), 0.6);
+}
+
+.task-list li .task-list-status-dot.completed {
+  background: var(--worktrack-success-light);
+  box-shadow: 0 0 10px rgba(var(--worktrack-success-light-rgb), 0.5);
+}
+
+.task-list-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.task-list li .task-list-deadline {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(var(--worktrack-fg-rgb), 0.55);
+}
+
+.task-list li .task-list-deadline.overdue-text {
+  color: var(--worktrack-danger-light);
+}
+
+.task-list li .status-pill {
+  flex: 0 0 auto;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.task-list li .status-pill-completed {
   color: var(--worktrack-success-light);
-  opacity: 1;
-  text-decoration: none;
-  text-shadow: 0 0 10px rgba(var(--worktrack-success-light-rgb),0.42);
+  background: rgba(var(--worktrack-success-rgb), 0.14);
 }
 
-.task-list li.done span.completed-check.dashboard-completed-check:hover {
-  color: var(--worktrack-success-lighter);
-  text-shadow: 0 0 14px rgba(var(--worktrack-success-lighter-rgb),0.52);
+.task-list li .status-pill-pending {
+  color: #facc15;
+  background: rgba(250, 204, 21, 0.14);
+}
+
+.task-list li .status-pill-overdue {
+  color: var(--worktrack-danger-light);
+  background: rgba(var(--worktrack-danger-rgb), 0.14);
+}
+
+.task-list li .status-pill-other {
+  color: var(--worktrack-accent-light);
+  background: rgba(var(--worktrack-accent-rgb), 0.14);
 }
 
 /* ================= MOBILE ================= */
@@ -3015,6 +3076,15 @@ a.btn:hover {
 
   .section-title {
     font-size: 24px;
+  }
+
+  .task-list li {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .task-list li .status-pill {
+    margin-left: 24px;
   }
 }
 /* ================= TASK PAGE ================= */
