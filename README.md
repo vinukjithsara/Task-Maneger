@@ -86,34 +86,36 @@ The application helps users organize daily workflows, manage priorities, track d
 
 # 🏗️ System Architecture
 
-                 ┌─────────────┐
-                 │  Frontend   │
-                 └──────┬──────┘
-                        │
-              How many tasks do I
-                 have to day?
-                        │
-                        ▼
-                 ┌─────────────┐
-          Answer │   Server    │ ◄──────── Answer ────────┐
-        ─────────┤             ├───────────────►           │
-                 └──────┬──────┘                     ┌─────────────┐
-                        │                            │  AI Server  │
-                        │                            └──────┬──────┘
-                        │                                   │
-                        │        How many tasks do I        │
-                        │             have today?           │
-                        │                                   │
-                        │                                   │
-                        │                                   │
-                        ▼                                   │
-                 ┌─────────────┐                            │
-                 │  Database   │                            │
-                 └─────────────┘                            │
-                        │                                   │
-                        └──────── RESPONSE DATA ────────────┘
+         ┌─────────────────┐
+         │    Frontend     │
+         │ React + TS      │
+         └───────┬─────────┘
+                 │
+                 │ How many tasks do I
+                 │ have today?
+                 ▼
+         ┌─────────────────┐
+         │     Server      │ ◄──────── Answer ──────────┐
+         │    Node.js +    ├──────────────────────────► │
+         │   Express.js    │                            │
+         └───────┬─────────┘                     ┌─────────────────┐
+                 │                               │    AI Server    │
+                 │                               │      Groq       │
+                 │                               └────────┬────────┘
+                 │                                        │
+                 │       How many tasks do I              │
+                 │            have today?                 │
+                 │                                        │
+                 ▼                                        │
+         ┌─────────────────┐                              │
+         │    Database     │                              │
+         │   PostgreSQL    │                              │
+         │    Supabase     │                              │
+         └────────┬────────┘                              │
+                  │                                       │
+                  └────────── RESPONSE DATA ──────────────┘
 
-        Frontend ◄──────── RESPONSE DATA ──────── Server
+         Frontend ◄──────── RESPONSE DATA ─────── Server
 
 # 📸 Screenshots
 
