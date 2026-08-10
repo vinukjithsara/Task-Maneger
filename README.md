@@ -86,23 +86,29 @@ The application helps users organize daily workflows, manage priorities, track d
 
 # 🏗️ System Architecture
 
-```mermaid
-flowchart LR
-    F[React Frontend<br/>TypeScript]
-    S[Express Backend<br/>Node.js]
-    D[(PostgreSQL Database<br/>Supabase)]
-    A[Groq AI]
-
-    F -->|HTTP / REST API| S
-    F -->|User Question| S
-    S -->|Response Data| F
-
-    S -->|SQL Queries| D
-    D -->|User Task Data| S
-
-    S -->|Question + Task Context| A
-    A -->|AI Generated Answer| S
-```
+        ┌─────────────┐
+        │  Frontend   │
+        └──────┬──────┘
+               │
+               │ Request
+               ▼
+        ┌─────────────┐
+        │   Server    │
+        └───┬─────┬───┘
+            │     │
+     Task Data    │ Question
+            │     ▼
+            │  ┌───────────┐
+            │  │  Groq AI  │
+            │  └─────┬─────┘
+            │        │ Answer
+            │        ▼
+            │      Server
+            │
+            ▼
+      ┌─────────────┐
+      │  Database   │
+      └─────────────┘
 
 # 📸 Screenshots
 
