@@ -93,7 +93,7 @@ flowchart LR
     S -->|SQL Queries| D[(PostgreSQL Database<br/>Supabase)]
     D -->|User Task Data| S
 
-    F -->|Question:<br/>"How many tasks do I have today?"| S
+    F -->|User Question| S
 
     S -->|Question + Task Context| A[Groq AI]
     A -->|AI Generated Answer| S
