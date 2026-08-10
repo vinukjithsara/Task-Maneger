@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import featureImg from "../assets/home.png";
+import featureImg from "../assets/tasks.png";
 import Logo from "./Logo";
 
 type HeroProps = {
