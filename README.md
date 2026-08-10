@@ -88,17 +88,20 @@ The application helps users organize daily workflows, manage priorities, track d
 
 ```mermaid
 flowchart LR
-    F[React Frontend<br/>TypeScript] -->|HTTP / REST API| S[Express Backend<br/>Node.js]
+    F[React Frontend<br/>TypeScript]
+    S[Express Backend<br/>Node.js]
+    D[(PostgreSQL Database<br/>Supabase)]
+    A[Groq AI]
 
-    S -->|SQL Queries| D[(PostgreSQL Database<br/>Supabase)]
+    F -->|HTTP / REST API| S
+    F -->|User Question| S
+    S -->|Response Data| F
+
+    S -->|SQL Queries| D
     D -->|User Task Data| S
 
-    F -->|User Question| S
-
-    S -->|Question + Task Context| A[Groq AI]
+    S -->|Question + Task Context| A
     A -->|AI Generated Answer| S
-
-    S -->|Response Data| F
 ```
 
 # 📸 Screenshots
