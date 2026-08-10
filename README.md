@@ -1,4 +1,4 @@
-# WorkTrack
+# � WorkTrack
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
@@ -10,55 +10,45 @@
 
 ---
 
-## Overview
+# 📌 Overview
 
-WorkTrack is a modern full-stack task management web application built with React, TypeScript, Node.js, Express.js, and PostgreSQL.
-
-It helps users organize daily work, manage priorities, track deadlines, and get quick answers through an AI chatbot that understands the user's task data.
-
----
-
-## Live Demo
-
-**[View Live Application](https://task-maneger-three.vercel.app)**
-
-<a href="https://youtu.be/dZYch9NAEYk" target="_blank">
-  <img width="1919" height="1019" alt="Watch the video" src="./src/assets/dashboard.png" />
-</a>
+A modern full-stack task management web application built using **React**, **TypeScript**, **Node.js**, and **Express.js**.  
+The application helps users organize daily workflows, manage priorities, track deadlines, and improve productivity with a clean and responsive interface.
 
 ---
 
-## Features
+# 🌐 Live Demo
 
-### Task Management
+🚀 **[View Live Application](https://task-maneger-three.vercel.app)**
+
+<a href="https://youtu.be/dZYch9NAEYk" target="_blank"><img width="1919" height="1019" alt="Watch the video" src="./src/assets/dashboard.png" /></a>
+---
+
+# ✨ Features
+
+## 📋 Task Management
 - Create tasks with titles, descriptions, and due dates
 - Edit existing tasks
 - Delete completed or unnecessary tasks
 - View detailed task information
 
-### Priority System
-- High priority
-- Medium priority
-- Low priority
+## 🚦 Priority System
+- High Priority
+- Medium Priority
+- Low Priority
 
-### Authentication
+## 🔐 Authentication
 - Secure JWT-based authentication
-- User signup and login
+- User signup and login system
 - Protected routes and session handling
 
-### AI Chatbot
-- Ask natural-language questions about your tasks
-- Get answers like "How many tasks do I have today?"
-- Uses the current user's task data as context
-- Powered by Groq through the backend `/api/chatbot` route
-
-### Responsive UI
+## 🎨 Responsive User Interface
 - Modern dashboard layout
-- Mobile-friendly design
-- Smooth navigation
+- Mobile-friendly responsive design
+- Smooth navigation experience
 - Reusable React components
 
-### Backend API
+## ⚡ Backend API
 - RESTful API architecture
 - Full CRUD functionality
 - SQL database integration
@@ -66,103 +56,107 @@ It helps users organize daily work, manage priorities, track deadlines, and get 
 
 ---
 
-## Tech Stack
+# 🛠️ Tech Stack
 
-### Frontend
+## Frontend
 | Technology | Purpose |
 |---|---|
-| React | UI development |
-| TypeScript | Type safety |
-| Vite | Build tool |
+| React | UI Development |
+| TypeScript | Type Safety |
+| Vite | Build Tool |
 | CSS | Styling |
 
-### Backend
+## Backend
 | Technology | Purpose |
 |---|---|
-| Node.js | Runtime environment |
-| Express.js | Backend framework |
+| Node.js | Runtime Environment |
+| Express.js | Backend Framework |
 | PostgreSQL (Supabase) | Database |
 | Groq | AI chatbot |
 
 ---
 
-## System Architecture
+# 🏗️ System Architecture
 
-```mermaid
-flowchart LR
-    F[Frontend] -->|Question: "How many tasks do I have today?"| S[Server]
-    S -->|Fetch task records| D[(Database)]
-    D -->|Task data| S
-    S -->|Send task context + question| A[AI Server]
-    A -->|Answer| S
-    S -->|Response data| F
+```text
+┌──────────────────┐
+│  React Frontend  │
+│  (TypeScript)    │        Vercel
+└────────┬─────────┘
+         │ HTTP/REST API
+         ▼
+┌──────────────────┐
+│  Express Backend │        Render
+│   (Node.js)      │
+└────────┬─────────┘
+         │ SQL Queries
+         ▼
+┌──────────────────┐
+│ Postgres Database │       Supabase
+└──────────────────┘
 ```
-
-### Architecture Flow
-
-1. The frontend sends a user question to the backend server.
-2. The server reads the user's task data from the database.
-3. The server sends the task context and question to the AI server.
-4. The AI server generates a natural-language answer.
-5. The backend returns the response data to the frontend.
 
 ---
 
-## Screenshots
+# 📸 Screenshots
 
-### Dashboard
+## 🖥️ Dashboard
 ![Dashboard](./src/assets/dashboard.png)
 ![Dashboard 2](./src/assets/dashboard2.png)
 
-### Create Task
+## ➕ Create Task
 ![Create Task](./src/assets/create-task.png)
 
-### Edit Task
+## ✏️ Edit Task
 ![Edit Task](./src/assets/edit-task.png)
 
-### Authentication
+## 🔐 Authentication
 ![Authentication](./src/assets/auth.png)
 
 ---
 
-## Getting Started
+# 🚀 Getting Started
 
-### Prerequisites
+## 📋 Prerequisites
 
 Make sure your system has:
 
-- Node.js v18 or later
+- Node.js (v18 or later)
 - npm
 - Git
-- A PostgreSQL database such as Supabase
+- A Postgres database (Supabase or otherwise)
 
 ---
 
-## Installation
+# 💻 Installation
 
-### 1. Clone the Repository
+## 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/vinukjithsara/react.git
 cd react/my-react-app
 ```
 
-### 2. Install Dependencies
+---
+
+## 2️⃣ Install Dependencies
 
 ```bash
 npm install
 cd "../Backend Worktrack" && npm install && cd -
 ```
 
-### 3. Configure Environment Variables
+---
 
-Copy `.env.example` to `.env` in `my-react-app/`:
+## 3️⃣ Configure Environment Variables
+
+Copy `.env.example` to `.env` in `my-react-app/` (project root, not `src/`):
 
 ```env
 VITE_API_URL=http://localhost:5000
 ```
 
-Backend `.env` in `Backend Worktrack/`:
+Backend `.env` (in `Backend Worktrack/`):
 
 ```env
 DATABASE_URL=postgresql://...
@@ -173,33 +167,30 @@ GMAIL_USER=
 GMAIL_APP_PASSWORD=
 ```
 
-### 4. Run Locally
+---
+
+## 4️⃣ Run Locally
 
 ```bash
-npm run dev
+npm run dev                     # frontend, in my-react-app/
+node server.js                  # backend, in Backend Worktrack/
 ```
-
-Run the backend separately from `Backend Worktrack/`:
-
-```bash
-node server.js
-```
-
-### 5. Deploy
-
-Frontend deploys to Vercel, and backend deploys to Render. Push to the connected branches for each.
 
 ---
 
-## Project Structure
+## 5️⃣ Deploy
+
+Frontend deploys to Vercel; backend deploys to Render. Push to the connected branches for each.
+
+---
+
+# 📁 Project Structure
 
 ```text
-my-react-app/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── assets/
-└── public/
+src/
+├── components/
+├── pages/
+└── assets/
 
 Backend Worktrack/
 ├── server.js
@@ -210,64 +201,70 @@ Backend Worktrack/
 
 ---
 
-## API Endpoints
+# 🔌 API Endpoints
 
-### Task Routes
+## 📋 Task Routes
 
 | Method | Endpoint | Description |
 |---|---|---|
 | GET | `/api/tasks/:userId` | Get all tasks for a user |
 | POST | `/api/tasks` | Create a task |
-| PUT | `/api/tasks/:id` | Update a task |
-| PUT | `/api/tasks/complete/:id` | Mark a task completed |
-| DELETE | `/api/tasks/:id` | Delete a task |
+| PUT | `/api/tasks/:id` | Update task |
+| PUT | `/api/tasks/complete/:id` | Mark task completed |
+| DELETE | `/api/tasks/:id` | Delete task |
 
-### Authentication Routes
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/register` | Register a user |
-| POST | `/api/login` | Login a user |
-
-### AI Assistant
+## 🔐 Authentication Routes
 
 | Method | Endpoint | Description |
 |---|---|---|
-| POST | `/api/chatbot` | Ask the AI assistant about the user's tasks |
+| POST | `/api/register` | Register user |
+| POST | `/api/login` | Login user |
+
+## 🤖 AI Assistant
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/chatbot` | Ask the AI assistant about your tasks |
 
 ---
 
-## Available Scripts
+# 🔧 Available Scripts
 
 | Command | Description |
 |---|---|
-| `npm run dev` | Start the frontend |
-| `npm run build` | Build the application |
-| `npm run preview` | Preview the production build |
+| `npm run dev` | Start frontend |
+| `npm run build` | Build application |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
 
 ---
 
-## Troubleshooting
+# 🛠️ Troubleshooting
 
-### Port Already In Use
+## Port Already In Use
 
 ```powershell
 Get-Process -Id (Get-NetTCPConnection -LocalPort 5173 -ErrorAction Ignore).OwningProcess | Stop-Process
 ```
 
-### Frontend Cannot Connect to Backend
+---
+
+## Frontend Cannot Connect to Backend
 
 - Verify the backend server is running
-- Check `VITE_API_URL` in `my-react-app/.env`
-- Make sure `FRONTEND_URL` in the backend matches the browser origin exactly
+- Check `VITE_API_URL` in `my-react-app/.env` (must be in the project root, not `src/`)
+- Inspect the browser console for CORS issues — the backend's `FRONTEND_URL` env var must match the origin you're browsing from exactly
 
-### Database Connection Issues
+---
+
+## Database Connection Issues
 
 - Verify `DATABASE_URL` in `Backend Worktrack/.env`
-- Confirm the PostgreSQL database is reachable
-- Make sure the `users` and `tasks` tables exist
+- Confirm the Postgres database is reachable and the `users`/`tasks` tables exist
 
-### Dependency Errors
+---
+
+## Dependency Errors
 
 ```bash
 rm -r node_modules package-lock.json
@@ -276,11 +273,11 @@ npm install
 
 ---
 
-## Contributing
+# 🤝 Contributing
 
-Contributions are welcome.
+Contributions are welcome!
 
-### Steps
+## Steps
 
 1. Fork the repository
 2. Create a feature branch
@@ -289,23 +286,23 @@ Contributions are welcome.
 git checkout -b feature/your-feature
 ```
 
-3. Commit your changes
+3. Commit changes
 
 ```bash
 git commit -m "Add your feature"
 ```
 
-4. Push the branch
+4. Push changes
 
 ```bash
 git push origin feature/your-feature
 ```
 
-5. Open a pull request
+5. Open a Pull Request
 
 ---
 
-## Reporting Issues
+# 🐞 Reporting Issues
 
 When reporting bugs, please include:
 
@@ -316,13 +313,13 @@ When reporting bugs, please include:
 
 ---
 
-## License
+# 📜 License
 
 This project is developed for educational and portfolio purposes.
 
 ---
 
-## Author
+# 👨‍💻 Author
 
 **Vinuk Jithsara**
 
@@ -331,4 +328,4 @@ This project is developed for educational and portfolio purposes.
 
 ---
 
-Made with love using React, TypeScript, Node.js, and Express.js.
+Made with ❤️ using React, TypeScript, Node.js, and Express.js.
