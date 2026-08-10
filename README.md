@@ -37,6 +37,14 @@ The application helps users organize daily workflows, manage priorities, track d
 - Medium Priority
 - Low Priority
 
+## 🤖 AI Chatbot
+
+- Ask natural-language questions about your tasks
+- Get answers like "How many tasks do I have today?"
+- The backend retrieves the user's task data from the database
+- The user's task data and question are sent to Groq for processing
+- The AI-generated answer is returned to the frontend through the backend
+
 ## 🔐 Authentication
 - Secure JWT-based authentication
 - User signup and login system
@@ -78,25 +86,20 @@ The application helps users organize daily workflows, manage priorities, track d
 
 # 🏗️ System Architecture
 
-```text
-┌──────────────────┐
-│  React Frontend  │
-│  (TypeScript)    │        Vercel
-└────────┬─────────┘
-         │ HTTP/REST API
-         ▼
-┌──────────────────┐
-│  Express Backend │        Render
-│   (Node.js)      │
-└────────┬─────────┘
-         │ SQL Queries
-         ▼
-┌──────────────────┐
-│ Postgres Database │       Supabase
-└──────────────────┘
-```
+```mermaid
+flowchart LR
+    F[React Frontend<br/>TypeScript] -->|HTTP / REST API| S[Express Backend<br/>Node.js]
 
----
+    S -->|SQL Queries| D[(PostgreSQL Database<br/>Supabase)]
+    D -->|User Task Data| S
+
+    F -->|Question:<br/>"How many tasks do I have today?"| S
+
+    S -->|Question + Task Context| A[Groq AI]
+    A -->|AI Generated Answer| S
+
+    S -->|Response Data| F
+```
 
 # 📸 Screenshots
 
