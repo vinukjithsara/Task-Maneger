@@ -86,29 +86,34 @@ The application helps users organize daily workflows, manage priorities, track d
 
 # 🏗️ System Architecture
 
-        ┌─────────────┐
-        │  Frontend   │
-        └──────┬──────┘
-               │
-               │ Request
-               ▼
-        ┌─────────────┐
-        │   Server    │
-        └───┬─────┬───┘
-            │     │
-     Task Data    │ Question
-            │     ▼
-            │  ┌───────────┐
-            │  │  Groq AI  │
-            │  └─────┬─────┘
-            │        │ Answer
-            │        ▼
-            │      Server
-            │
-            ▼
-      ┌─────────────┐
-      │  Database   │
-      └─────────────┘
+                 ┌─────────────┐
+                 │  Frontend   │
+                 └──────┬──────┘
+                        │
+              How many tasks do I
+                 have to day?
+                        │
+                        ▼
+                 ┌─────────────┐
+          Answer │   Server    │ ◄──────── Answer ────────┐
+        ─────────┤             ├───────────────►           │
+                 └──────┬──────┘                     ┌─────────────┐
+                        │                            │  AI Server  │
+                        │                            └──────┬──────┘
+                        │                                   │
+                        │        How many tasks do I        │
+                        │             have today?           │
+                        │                                   │
+                        │                                   │
+                        │                                   │
+                        ▼                                   │
+                 ┌─────────────┐                            │
+                 │  Database   │                            │
+                 └─────────────┘                            │
+                        │                                   │
+                        └──────── RESPONSE DATA ────────────┘
+
+        Frontend ◄──────── RESPONSE DATA ──────── Server
 
 # 📸 Screenshots
 
